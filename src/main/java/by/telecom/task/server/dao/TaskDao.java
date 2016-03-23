@@ -6,7 +6,7 @@ import java.util.List;
 import by.telecom.task.shared.domain.Employee;
 import by.telecom.task.shared.domain.Task;
 
-public interface TaskDao extends GenericDao<Task, Long> {
+public interface TaskDao {
 
 	List<Task> getByEmployee(Employee employee);
 

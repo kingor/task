@@ -7,6 +7,7 @@
 package by.telecom.task.server.dao.impl;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,13 +23,15 @@ import by.telecom.task.shared.domain.Employee;
  * @author kingor
  */
 @Repository
-public class EmployeeDaoImpl extends GenericDaoImpl<Employee, Long> implements EmployeeDao {
+public class EmployeeDaoImpl implements EmployeeDao {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
+	private static final Logger logger = Logger.getLogger(EmployeeDao.class.getName());
 
 	@Override
 	public List<Employee> getByName(String name) {
+		logger.info("SERVICE - EmployeeService Get all subscriber!");
 		List<Employee> all = null;
 		String SELECT_SQL = "select * from EMPLOYEE where name=" + name;
 		Query query = entityManager.createQuery(SELECT_SQL);
@@ -38,6 +41,7 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee, Long> implements E
 
 	@Override
 	public List<Employee> getAll() {
+		logger.info("Dao - EmployeeService Get all subscriber!");
 		List<Employee> all = null;
 		String SELECT_SQL = "select * from EMPLOYEE";
 		Query query = entityManager.createQuery(SELECT_SQL);

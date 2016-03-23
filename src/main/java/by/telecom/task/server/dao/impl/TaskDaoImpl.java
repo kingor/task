@@ -14,7 +14,7 @@ import by.telecom.task.shared.domain.Employee;
 import by.telecom.task.shared.domain.Task;
 
 @Repository
-public class TaskDaoImpl extends GenericDaoImpl<Task, Long> implements TaskDao {
+public class TaskDaoImpl implements TaskDao {
 
 	@PersistenceContext
 	protected EntityManager entityManager;

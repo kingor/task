@@ -14,7 +14,7 @@ import by.telecom.task.shared.domain.Employee;
  *
  * @author ASUP8
  */
-public interface EmployeeDao extends GenericDao<Employee, Long> {
+public interface EmployeeDao {
 
 	List<Employee> getByName(String name);
 

@@ -14,31 +14,33 @@
    http://www.springframework.org/schema/context/spring-context-4.0.xsd
       ">
 
- <context:property-placeholder location="/WEB-INF/hibernate.properties" />
-
- <!-- Enable annotation style of managing transactions -->
- <tx:annotation-driven transaction-manager="transactionManager" />
-
-<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-  <property name="persistenceUnitName" value="MyPersistenceUnit" />
- </bean>
-
-  
- <!-- Declare a datasource that has pooling capabilities--> 
-<!--  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" -->
-<!--     destroy-method="close" -->
-<!--     p:driverClass="${app.jdbc.driverClassName}" -->
-<!--     p:jdbcUrl="${app.jdbc.url}" -->
-<!--     p:user="${app.jdbc.username}" -->
-<!--     p:password="${app.jdbc.password}" -->
-<!--     p:acquireIncrement="5" -->
-<!--     p:idleConnectionTestPeriod="60" -->
-<!--     p:maxPoolSize="100" -->
-<!--     p:maxStatements="50" -->
-<!--     p:minPoolSize="10" /> -->
+    <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="packagesToScan" value="by.telecom.task" />
+      <property name="jpaVendorAdapter">
+         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+      </property>
+      <property name="jpaProperties">
+         <props>
+            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+         </props>
+      </property>
+   </bean>
  
- <!-- Declare a transaction manager-->
- <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-          p:entityManagerFactory-ref="entityManagerFactory" />
-   
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+      <property name="url" value="jdbc:mysql://localhost:3306/task_list" />
+      <property name="username" value="root" />
+      <property name="password" value="123456" />
+   </bean>
+ 
+   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="myEmf" />
+   </bean>
+   <tx:annotation-driven />
+ 
+   <bean id="persistenceExceptionTranslationPostProcessor"
+      class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
 </beans>
