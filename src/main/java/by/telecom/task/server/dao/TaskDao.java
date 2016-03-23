@@ -8,10 +8,10 @@ import by.telecom.task.shared.domain.Task;
 
 public interface TaskDao extends GenericDao<Task, Long> {
 
-	Task getByName(String name, String sortField, String orderType);
-
 	List<Task> getByEmployee(Employee employee);
 
 	List<Task> getByEmployeeMonth(Employee employee, Date monthBegin, Date monthEnd);
+
+	List<Task> getAll();
 
 }

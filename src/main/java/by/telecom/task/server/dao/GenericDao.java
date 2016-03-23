@@ -7,7 +7,6 @@
 package by.telecom.task.server.dao;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
@@ -16,7 +15,5 @@ import java.util.List;
 public interface GenericDao<T, PK extends Serializable> {
 
 	T read(Class<T> classT, PK id);
-
-	List<T> getAll(Class<T> classT);
 
 }

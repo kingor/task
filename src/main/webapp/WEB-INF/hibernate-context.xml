@@ -19,39 +19,26 @@
  <!-- Enable annotation style of managing transactions -->
  <tx:annotation-driven transaction-manager="transactionManager" />
 
- <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-     p:dataSource-ref="dataSource"
-     p:configLocation="${hibernate.config}"
-     p:packagesToScan="by.telecom.task"/>
-
-<!-- <bean id="entityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" -->
-<!--     p:dataSource-ref="dataSource" -->
-<!--     p:packagesToScan="by.telecom.tasklist"> -->
-<!--     <property name="jpaVendorAdapter"> -->
-<!--         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> -->
-<!--             <property name="showSql" value="true" /> -->
-<!--             <property name="database" value="MYSQL" /> -->
-<!--             <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" /> -->
-<!--         </bean> -->
-<!--     </property> -->
-<!-- </bean> -->
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+  <property name="persistenceUnitName" value="MyPersistenceUnit" />
+ </bean>
 
   
  <!-- Declare a datasource that has pooling capabilities--> 
- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-    destroy-method="close"
-    p:driverClass="${app.jdbc.driverClassName}"
-    p:jdbcUrl="${app.jdbc.url}"
-    p:user="${app.jdbc.username}"
-    p:password="${app.jdbc.password}"
-    p:acquireIncrement="5"
-    p:idleConnectionTestPeriod="60"
-    p:maxPoolSize="100"
-    p:maxStatements="50"
-    p:minPoolSize="10" />
+<!--  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" -->
+<!--     destroy-method="close" -->
+<!--     p:driverClass="${app.jdbc.driverClassName}" -->
+<!--     p:jdbcUrl="${app.jdbc.url}" -->
+<!--     p:user="${app.jdbc.username}" -->
+<!--     p:password="${app.jdbc.password}" -->
+<!--     p:acquireIncrement="5" -->
+<!--     p:idleConnectionTestPeriod="60" -->
+<!--     p:maxPoolSize="100" -->
+<!--     p:maxStatements="50" -->
+<!--     p:minPoolSize="10" /> -->
  
  <!-- Declare a transaction manager-->
- <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
-          p:sessionFactory-ref="sessionFactory" />
+ <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+          p:entityManagerFactory-ref="entityManagerFactory" />
    
 </beans>

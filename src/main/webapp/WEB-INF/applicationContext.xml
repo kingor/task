@@ -20,8 +20,6 @@
   
  <!-- Load Hibernate related configuration -->
  <import resource="hibernate-context.xml" /> 
- 
- <!-- Spring security configuration -->
-<!--  <import resource="spring-security.xml" />  -->
+
 
 </beans>

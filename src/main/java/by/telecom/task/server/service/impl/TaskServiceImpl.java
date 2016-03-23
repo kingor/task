@@ -21,39 +21,11 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
 	TaskDao taskDao;
 
-	// @Override
-	// @Transactional
-	// public Long create(Task newInstance) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-	//
-	// @Override
-	// @Transactional
-	// public Task read(Class<Task> classT, Long id) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-	//
-	// @Override
-	// @Transactional
-	// public void update(Task transientObject) {
-	// // TODO Auto-generated method stub
-	//
-	// }
-	//
-	// @Override
-	// @Transactional
-	// public void delete(Task persistentObject) {
-	// // TODO Auto-generated method stub
-	//
-	// }
-
 	@Override
 	@Transactional
 	public List<Task> getAll() {
 		logger.info("SERVICE - Get tasks all subscriber!");
-		return taskDao.getAll(Task.class);
+		return taskDao.getAll();
 	}
 
 	@Override
