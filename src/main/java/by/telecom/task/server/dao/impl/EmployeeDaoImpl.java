@@ -7,7 +7,7 @@
 package by.telecom.task.server.dao.impl;
 
 import java.util.List;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import by.telecom.task.server.dao.EmployeeDao;
