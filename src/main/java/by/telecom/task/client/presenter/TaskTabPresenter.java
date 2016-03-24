@@ -1,6 +1,7 @@
 package by.telecom.task.client.presenter;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import by.telecom.task.client.service.EmployeeService;
 import by.telecom.task.client.service.EmployeeServiceAsync;
@@ -37,6 +38,7 @@ public class TaskTabPresenter implements Presenter {
 	private List<Employee> employeeAll;
 	private EmployeeServiceAsync emplRpcService = GWT.create(EmployeeService.class);
 	private TaskServiceAsync taskRpcService = GWT.create(TaskService.class);
+	private static final Logger logger = Logger.getLogger(TaskTabPresenter.class.getName());
 
 	// private final HandlerManager eventBus;
 
@@ -56,11 +58,11 @@ public class TaskTabPresenter implements Presenter {
 	private void fetchEmployeeAll() {
 		emplRpcService.getAll(new AsyncCallback<List<Employee>>() {
 			public void onFailure(Throwable caught) {
-				// logger.info("Async callback don`t work");
+				logger.info("Async callback don`t work------------------");
 			}
 
 			public void onSuccess(List<Employee> emplAll) {
-				// logger.info("Async callback is working");
+				logger.info("Async callback is working!!!!!!!!!!!!!!");
 				display.setEmployeeList(emplAll);
 				employeeAll = emplAll;
 				chooseSelectedEmployee(0);
