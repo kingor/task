@@ -16,7 +16,5 @@ import by.telecom.task.shared.domain.Employee;
  */
 public interface EmployeeDao {
 
-	List<Employee> getByName(String name);
-
 	List<Employee> getAll();
 }

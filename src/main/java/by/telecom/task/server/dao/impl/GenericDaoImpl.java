@@ -7,14 +7,15 @@
 package by.telecom.task.server.dao.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import by.telecom.task.server.dao.GenericDao;
-//import org.apache.log4j.Logger;
 
 /**
  *
@@ -29,11 +30,14 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 
 	@PersistenceContext
 	protected EntityManager entityManager;
+	private static final Logger logger = Logger.getLogger(GenericDao.class.getName());
 
 	@Override
-	public T read(Class<T> classT, PK id) {
-		T objectT = (T) entityManager.find(classT, id);
-		return objectT;
+	public List<T> getAll(Class classT) {
+		logger.info("GenericDao");
+		List<T> all = entityManager.createQuery("from " + classT.getSimpleName(), classT)
+				.getResultList();
+		return all;
 	}
 
 }
