@@ -13,9 +13,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Task implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 234601966753194307L;
 
 	@Id

@@ -9,10 +9,8 @@ import javax.persistence.Id;
 @Entity
 public class Employee implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -750493099329559959L;
+
 	@Id
 	@GeneratedValue
 	private Long id;

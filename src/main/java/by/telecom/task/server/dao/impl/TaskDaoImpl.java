@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import by.telecom.task.server.dao.TaskDao;
@@ -14,38 +14,30 @@ import by.telecom.task.shared.domain.Employee;
 import by.telecom.task.shared.domain.Task;
 
 @Repository
-public class TaskDaoImpl implements TaskDao {
+public class TaskDaoImpl extends GenericDaoImpl<Task, Long> implements TaskDao {
 
 	@PersistenceContext
-	protected EntityManager entityManager;
+	private EntityManager entityManager;
+	private static final Logger logger = Logger.getLogger(TaskDao.class);
 
 	@Override
 	public List<Task> getByEmployee(Employee employee) {
-		List<Task> all = entityManager
-				.createQuery("from Task t where t.employee = :employee ", Task.class)
-				.setParameter("employee", employee).getResultList();
+		logger.info("DAO - caused getByEmployee()");
 
-		return all;
+		List<Task> taskList = entityManager.createQuery("from Task t where t.employee = :employee ", Task.class).setParameter("employee", employee)
+				.getResultList();
+
+		return taskList;
 	}
 
 	@Override
 	public List<Task> getByEmployeeMonth(Employee employee, Date monthBegin, Date monthEnd) {
-		List<Task> all = entityManager
-				.createQuery(
-						"from Task t where t.employee = :employee and dateBegin<=:monthEnd and dateEnd>=:monthBegin",
-						Task.class).setParameter("employee", employee)
-				.setParameter("monthBegin", monthBegin).setParameter("monthEnd", monthEnd)
-				.getResultList();
+		logger.info("DAO - caused getByEmployeeMonth()");
 
-		return all;
-	}
+		List<Task> taskList = entityManager
+				.createQuery("from Task t where t.employee = :employee and dateBegin<=:monthEnd and dateEnd>=:monthBegin", Task.class)
+				.setParameter("employee", employee).setParameter("monthBegin", monthBegin).setParameter("monthEnd", monthEnd).getResultList();
 
-	@Override
-	public List<Task> getAll() {
-		List<Task> all = null;
-		String SELECT_SQL = "select * from TASK";
-		Query query = entityManager.createQuery(SELECT_SQL);
-		all = query.getResultList();
-		return all;
+		return taskList;
 	}
 }

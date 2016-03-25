@@ -16,31 +16,29 @@ import by.telecom.task.shared.domain.Task;
 @Service("taskService")
 public class TaskServiceImpl implements TaskService {
 
-	private static final Logger logger = Logger.getLogger(TaskService.class.getName());
-
 	@Autowired
 	TaskDao taskDao;
+	private static final Logger logger = Logger.getLogger(TaskService.class.getName());
 
 	@Override
 	@Transactional
 	public List<Task> getAll() {
-		logger.info("SERVICE - Get tasks all subscriber!");
-		return taskDao.getAll();
+		logger.info("SERVICE - caused getAll()");
+		return taskDao.getAll(Task.class);
 	}
 
 	@Override
 	@Transactional
 	public List<Task> getByEmployee(Employee employee) {
-		logger.info("SERVICE - Get tasks by employee!");
+		logger.info("SERVICE - caused getByEmployee()");
 		return taskDao.getByEmployee(employee);
 	}
 
 	@Override
 	@Transactional
 	public List<Task> getByEmployeeMonth(Employee employee, Date dateBegin, Date dateEnd) {
-		logger.info("SERVICE - Get tasks by employee and month!");
+		logger.info("SERVICE - caused getByEmployeeMonth()");
 		return taskDao.getByEmployeeMonth(employee, dateBegin, dateEnd);
-		// return taskDao.getByEmployee(employee);
 	}
 
 }

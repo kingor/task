@@ -11,15 +11,4 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface EmployeeService extends RemoteService {
 
 	public List<Employee> getAll();
-
-	// public List<Employee> getById(Long id);
-
-	// Long create(Employee employee);
-	//
-	// Employee read(Long id);
-	//
-	// void update(Employee employee);
-	//
-	// void delete(Employee employee);
-
 }

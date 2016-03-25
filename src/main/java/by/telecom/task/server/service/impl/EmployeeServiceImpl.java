@@ -16,14 +16,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	EmployeeDao employeeDao;
-
 	private static final Logger logger = Logger.getLogger(EmployeeService.class.getName());
 
 	@Override
 	@Transactional
 	public List<Employee> getAll() {
-		logger.info("SERVICE - EmployeeService Get all subscriber!");
-		return employeeDao.getAll();// getAll(Employee.class);
+		logger.info("SERVICE - caused getAll()");
+		return employeeDao.getAll(Employee.class);
 	}
 
 }

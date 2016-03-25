@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package by.telecom.task.server.dao.impl;
 
 import java.io.Serializable;
@@ -18,8 +12,7 @@ import org.springframework.stereotype.Repository;
 import by.telecom.task.server.dao.GenericDao;
 
 /**
- *
- * @author kingor
+ * 
  * @param <T>
  *            Entity class
  * @param <PK>
@@ -29,14 +22,13 @@ import by.telecom.task.server.dao.GenericDao;
 public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T, PK> {
 
 	@PersistenceContext
-	protected EntityManager entityManager;
+	private EntityManager entityManager;
 	private static final Logger logger = Logger.getLogger(GenericDao.class.getName());
 
 	@Override
 	public List<T> getAll(Class classT) {
-		logger.info("GenericDao");
-		List<T> all = entityManager.createQuery("from " + classT.getSimpleName(), classT)
-				.getResultList();
+		logger.info("DAO - caused getAll()");
+		List<T> all = entityManager.createQuery("from " + classT.getSimpleName(), classT).getResultList();
 		return all;
 	}
 
