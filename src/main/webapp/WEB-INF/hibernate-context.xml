@@ -25,15 +25,16 @@
    </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-      <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-      <property name="url" value="jdbc:mysql://localhost:3306/task_list" />
-      <property name="username" value="root" />
-      <property name="password" value="123456" />
+      <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+      <property name="url" value="jdbc:hsqldb:file:/db/task_list" />
+      <property name="username" value="sa" />
+      <property name="password" value="" />
    </bean>
  
    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
       <property name="entityManagerFactory" ref="myEmf" />
    </bean>
+   
    <tx:annotation-driven />
  
    <bean id="persistenceExceptionTranslationPostProcessor"

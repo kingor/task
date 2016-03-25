@@ -7,7 +7,6 @@ import by.telecom.task.client.ui.PlanTabView;
 import by.telecom.task.client.ui.TaskTabView;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -20,11 +19,10 @@ public class Task implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		HandlerManager eventBus = new HandlerManager(null);
 		TaskTabView taskView = new TaskTabView();
 		PlanTabView planView = new PlanTabView();
-		Presenter taskPresenter = new TaskTabPresenter(taskView, eventBus);
-		Presenter planPresenter = new PlanTabPresenter(planView, eventBus);
+		Presenter taskPresenter = new TaskTabPresenter(taskView);
+		Presenter planPresenter = new PlanTabPresenter(planView);
 
 		TabPanel tabPanel = new TabPanel();
 

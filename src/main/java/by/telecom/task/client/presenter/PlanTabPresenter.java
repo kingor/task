@@ -3,6 +3,7 @@ package by.telecom.task.client.presenter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import by.telecom.task.client.service.EmployeeService;
 import by.telecom.task.client.service.EmployeeServiceAsync;
@@ -15,7 +16,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.HasChangeHandlers;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -47,12 +47,10 @@ public class PlanTabPresenter implements Presenter {
 	private List<Employee> employeeAll;
 	private EmployeeServiceAsync emplRpcService = GWT.create(EmployeeService.class);
 	private TaskServiceAsync taskRpcService = GWT.create(TaskService.class);
+	private static final Logger logger = Logger.getLogger(PlanTabPresenter.class.getName());
 
-	// private final HandlerManager eventBus;
-
-	public PlanTabPresenter(Display display, HandlerManager eventBus) {
+	public PlanTabPresenter(Display display) {
 		this.display = display;
-		// this.eventBus = eventBus;
 	}
 
 	@Override
@@ -67,11 +65,11 @@ public class PlanTabPresenter implements Presenter {
 	private void fetchEmployeeAll() {
 		emplRpcService.getAll(new AsyncCallback<List<Employee>>() {
 			public void onFailure(Throwable caught) {
-				// logger.info("Async callback don`t work");
+				logger.info("Async callback don`t work");
 			}
 
 			public void onSuccess(List<Employee> emplAll) {
-				// logger.info("Async callback is working");
+				logger.info("Async callback is working");
 				display.setEmployeeList(emplAll);
 				employeeAll = emplAll;
 				chooseSelectedEmployeeMonth(0, 0);

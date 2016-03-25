@@ -14,7 +14,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.HasChangeHandlers;
-import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
@@ -40,11 +39,8 @@ public class TaskTabPresenter implements Presenter {
 	private TaskServiceAsync taskRpcService = GWT.create(TaskService.class);
 	private static final Logger logger = Logger.getLogger(TaskTabPresenter.class.getName());
 
-	// private final HandlerManager eventBus;
-
-	public TaskTabPresenter(Display display, HandlerManager eventBus) {
+	public TaskTabPresenter(Display display) {
 		this.display = display;
-		// this.eventBus = eventBus;
 	}
 
 	@Override

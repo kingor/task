@@ -11,7 +11,6 @@ import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -77,7 +76,6 @@ public class TaskTabView extends Composite implements TaskTabPresenter.Display {
 	public int getChangedRow() {
 		int selectedRow = 0;
 		selectedRow = employeeList.getSelectedIndex();
-		Window.alert(String.valueOf(selectedRow));
 		return selectedRow;
 	}
 
